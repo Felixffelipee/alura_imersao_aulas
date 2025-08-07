@@ -1,0 +1,91 @@
+import pandas as pd
+df = pd.read_csv("https://raw.githubusercontent.com/guilhermeonrails/data-jobs/refs/heads/main/salaries.csv")
+
+df.head()
+df.info()
+df.describe()
+df.shape
+
+linhas, colunas = df.shape[0], df.shape[1]
+print("Linhas: ", linhas)
+print("Colunas: ", colunas)
+
+
+df.columns
+
+
+# prompt: traduza para mim todas as colunas do "df" para português brasileiro
+df.columns = [
+    'ano',
+    'senioridade',
+    'contrato',
+    'cargo',
+    'salario',
+    'moeda',
+    'salario_usd',
+    'residencia_empregado',
+    'taxa_remoto',
+    'localizacao_empresa',
+    'tamanho_empresa'
+]
+
+print("Colunas traduzidas: ")
+print(df.columns)
+
+
+df['senioridade'].value_counts()
+df['contrato'].value_counts()
+
+
+#prompt: traduza para português brasil as categorias da coluna 'senioridade' do "df"
+senioridade = {
+    'SE': 'Sênior',
+    'MI': 'Pleno',
+    'EN': 'Junior',
+    'EX': 'Executivo'
+}
+
+df['senioridade'] = df['senioridade'].replace(senioridade)
+
+print("Categorias da coluna 'senioridade' traduzidas:\n ")
+print(df['senioridade'].value_counts())
+
+
+#traduza para português brasil as categorias da coluna 'contrato' do "df"
+contrato = {
+    'FT': 'Tempo Integral',
+    'CT': 'Contrato',
+    'PT': 'Tempo Parcial',
+    'FL': 'Freelancer'
+}
+
+df['contrato'] = df['contrato'].replace(contrato)
+
+print("Categorias da coluna 'contrato' traduzidas:\n ")
+print(df['contrato'].value_counts())
+
+
+#traduza para português brasil as categorias da coluna 'tamanho_empresa' do "df"
+tamanho_empresa = {
+    'S': 'Pequena',
+    'M': 'Média',
+    'L': 'Grande'
+}
+
+df['tamanho_empresa'] = df['tamanho_empresa'].replace(tamanho_empresa)
+
+print("Categorias da coluna 'tamanho_empresa' traduzidas:\n ")
+print(df['tamanho_empresa'].value_counts())
+
+
+#Converta para texto e traduza a categoria da coluna 'taxa_remoto' do "df"
+taxa_remoto = {
+    0: 'Presencial',
+    50: 'Híbrido',
+    100: 'Remoto'
+}
+
+df['taxa_remoto'] = df['taxa_remoto'].replace(taxa_remoto)
+
+print("Categorias da coluna 'taxa_remoto' convertidas e traduzidas:\n ")
+print(df['taxa_remoto'].value_counts())
