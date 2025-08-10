@@ -1,10 +1,7 @@
 import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/guilhermeonrails/data-jobs/refs/heads/main/salaries.csv")
-
-df.head()
-df.info()
-df.describe()
 df.shape
+
 
 linhas, colunas = df.shape[0], df.shape[1]
 print("Linhas: ", linhas)
@@ -29,7 +26,7 @@ df.columns = [
     'tamanho_empresa'
 ]
 
-print("Colunas traduzidas: ")
+print("Colunas traduzidas: \n")
 print(df.columns)
 
 
@@ -47,7 +44,7 @@ senioridade = {
 
 df['senioridade'] = df['senioridade'].replace(senioridade)
 
-print("Categorias da coluna 'senioridade' traduzidas:\n ")
+print("Categorias da coluna 'senioridade' traduzidas: ")
 print(df['senioridade'].value_counts())
 
 
@@ -89,3 +86,11 @@ df['taxa_remoto'] = df['taxa_remoto'].replace(taxa_remoto)
 
 print("Categorias da coluna 'taxa_remoto' convertidas e traduzidas:\n ")
 print(df['taxa_remoto'].value_counts())
+
+
+df.isnull().sum()
+#Inspecionar a categoria 'ano' e o que tem nele
+df['ano'].unique()
+
+#exibir os dados que tem os valores nulo
+df[df.isnull().any(axis=1)]
