@@ -1,0 +1,11 @@
+#solucao resposta fixa
+import pandas as pd
+import numpy as np
+
+df_cidades = pd.DataFrame({
+    'nome': ['Ana', 'Bruno','Carlos','Daniele','Valeria'],
+    'cidade': ['São Paulo', np.nan, 'Curitiba', np.nan, 'Belém']
+})
+
+df_cidades['cidade_prenchida'] = df_cidades['cidade'].fillna("Não Informado")
+df_cidades
