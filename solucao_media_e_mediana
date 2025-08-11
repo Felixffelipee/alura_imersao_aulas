@@ -1,0 +1,11 @@
+#criando um banco de dados, que falta preenchimento de salarios de alguns usuarios
+import numpy as np
+df_salarios = pd.DataFrame({
+    'nome': ['Ana', 'Bruno,','Carlos','Daniele'],
+    'salario':[4000, np.nan, 5000, np.nan],
+                            
+})
+#codigo contendo calculo de media e abaixo de mediana e criando as abas "salario_media" e "salario_mediana"
+df_salarios['salario_media'] = df_salarios['salario'].fillna(df_salarios['salario'].mean().round(2))
+df_salarios['salario_mediana'] = df_salarios['salario'].fillna(df_salarios['salario'].median())
+df_salarios
