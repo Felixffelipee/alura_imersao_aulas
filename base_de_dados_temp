@@ -1,0 +1,13 @@
+import pandas as pd
+import numpy as np
+
+#criado banco de dados
+df_temperaturas = pd.DataFrame({
+    'Dia': ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"],
+    'Temperatura': [30, np.nan, np.nan, 28, 27],
+                                
+})
+
+#criado a aba "preenchido_ffill" e solucao para preencher os valores nulos
+df_temperaturas["prenchido_ffill"] = df_temperaturas['Temperatura'].ffill()
+df_temperaturas
