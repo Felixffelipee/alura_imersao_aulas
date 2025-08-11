@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+
 df = pd.read_csv("https://raw.githubusercontent.com/guilhermeonrails/data-jobs/refs/heads/main/salaries.csv")
 df.shape
 
@@ -9,8 +11,6 @@ print("Colunas: ", colunas)
 
 
 df.columns
-
-
 # prompt: traduza para mim todas as colunas do "df" para português brasileiro
 df.columns = [
     'ano',
@@ -92,5 +92,12 @@ df.isnull().sum()
 #Inspecionar a categoria 'ano' e o que tem nele
 df['ano'].unique()
 
-#exibir os dados que tem os valores nulo
+#exibir os dados que tem valores nulo
 df[df.isnull().any(axis=1)]
+
+#criado variavel de BaseDeDados e retirado valores nulos.
+df_limpo = df.dropna()
+
+#conversão de float para int
+df_limpo = df_limpo.assign(ano = df_limpo['ano'].astype('int64'))
+df_limpo.head()
