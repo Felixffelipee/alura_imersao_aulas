@@ -8,6 +8,9 @@ df_temperaturas = pd.DataFrame({
                                 
 })
 
-#criado a aba "preenchido_ffill" e solucao para preencher os valores nulos
+#criado a aba "preenchido_ffill" e solucao para preencher os valores nulos com o ffill
 df_temperaturas["prenchido_ffill"] = df_temperaturas['Temperatura'].ffill()
+
+#criado a aba "preenchido_bfill" e solucao para preencher os valores nulos com o bfill
+df_temperaturas["preenchido_bfill"] = df_temperaturas['Temperatura'].bfill()
 df_temperaturas
