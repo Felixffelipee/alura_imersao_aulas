@@ -27,8 +27,7 @@ fig = px.pie(remoto_contagem,
 fig.show()
 
 
-#gerar grafico de rosquinha com a biblioteca ploty
-
+#gerar grafico de rosquinha + texto porcentagem com a biblioteca ploty
 remoto_contagem = df_limpo['taxa_remoto'].value_counts().reset_index()
 remoto_contagem.columns = ['tipo_trabalho', 'quantidade']
 
@@ -39,4 +38,5 @@ fig = px.pie(remoto_contagem,
              hole=0.4
              )
 
+fig.update_traces(textinfo='percent+label')
 fig.show()
