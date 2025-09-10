@@ -1,0 +1,42 @@
+#gerar grafico com a biblioteca plotly e com auxilio da IA
+import plotly.express as px
+
+df_senioridade_salario = df_limpo.groupby('senioridade')['salario_usd'].mean().sort_values(ascending=True).reset_index()
+
+fig = px.bar(df_senioridade_salario,
+             x='senioridade',
+             y='salario_usd',
+             title='Média Salarial por Senioridade',
+             labels={'senioridade': 'Nível de Senioridade', 'salario_usd': 'Média Salarial Anual (USD)'})
+fig.show()
+
+
+
+#gerar grafico de pizza com a biblioteca ploty
+
+remoto_contagem = df_limpo['taxa_remoto'].value_counts().reset_index()
+remoto_contagem.columns = ['tipo_trabalho', 'quantidade']
+
+fig = px.pie(remoto_contagem,
+             names='tipo_trabalho',
+             values='quantidade',
+             title='Proporção dos tipos de trabalho'
+
+             )
+
+fig.show()
+
+
+#gerar grafico de rosquinha com a biblioteca ploty
+
+remoto_contagem = df_limpo['taxa_remoto'].value_counts().reset_index()
+remoto_contagem.columns = ['tipo_trabalho', 'quantidade']
+
+fig = px.pie(remoto_contagem,
+             names='tipo_trabalho',
+             values='quantidade',
+             title='Proporção dos tipos de trabalho',
+             hole=0.4
+             )
+
+fig.show()
