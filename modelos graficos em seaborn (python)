@@ -3,9 +3,11 @@ import seaborn as sns
 sns.barplot(data=df_limpo, x='senioridade', y='salario_usd')
 
 #Criação de gráfico mais customizado, seaborn
-import matplotlib.pyplot as plt
+df_limpo.groupby('senioridade')['salario_usd'].mean().sort_values(ascending=True)
+ordem = df_limpo.groupby('senioridade')['salario_usd'].mean().sort_values(ascending=True).index
+
 plt.figure(figsize=(8,5))
-sns.barplot(data=df_limpo, x='senioridade', y='salario_usd')
+sns.barplot(data=df_limpo, x='senioridade', y='salario_usd', order=ordem)
 plt.title('Salario médio por senioridade')
 plt.xlabel('Nível de senioridade')
 plt.ylabel('Salário médio anual(USD)')
@@ -19,9 +21,22 @@ plt.xlabel('Salário em USD')
 plt.ylabel('Frequencia')
 plt.show()
 
-#grafico boxplot,modelo1
+#grafico boxplot
+ordem_senioridade = ['Junior', 'Pleno', 'Sênior', 'Executivo']
+
 plt.figure(figsize=(8,5))
-sns.boxplot(x=df_limpo['salario_usd'])
-plt.title('Boxplot salários')
-plt.xlabel('Salário em USD')
+sns.boxplot(x='senioridade', y='salario_usd', data=df_limpo, order=ordem_senioridade)
+plt.title('Boxplot da distribuição por senioridade')
+plt.xlabel('Nível de senioridade')
+plt.ylabel('Salário em USD')
+plt.show()
+
+#grafico boxplot modelo2 com cor diferente
+ordem_senioridade = ['Junior', 'Pleno', 'Sênior', 'Executivo']
+
+plt.figure(figsize=(8,5))
+sns.boxplot(x='senioridade', y='salario_usd', data=df_limpo, order=ordem_senioridade, palette='Set2', hue='senioridade')
+plt.title('Boxplot da distribuição por senioridade')
+plt.xlabel('Nível de senioridade')
+plt.ylabel('Salário em USD')
 plt.show()
